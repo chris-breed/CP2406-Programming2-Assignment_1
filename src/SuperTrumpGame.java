@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.math.*;
 
 public class SuperTrumpGame {
 
     public int playerCount;
+    public ArrayList<Integer> players = new ArrayList<Integer>(3);
 
     public static void main(String[] args) {
 
