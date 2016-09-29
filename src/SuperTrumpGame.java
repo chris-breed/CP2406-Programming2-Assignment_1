@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.math.*;
@@ -48,6 +50,15 @@ public class SuperTrumpGame {
             } else {
                 playersCountBool = true;
 
+                //create an array for the players
+                ArrayList<ArrayList> playersArray = new ArrayList<ArrayList>(playerCount);
+
+                playersArray.add(new ArrayList<String>());
+
+                //user 0 is player, add how many players the user has specified
+
+                //initialise cards into each of the users hands
+                //user has
 
                 //array for the players
                 //array for the cards - then reference the deck array

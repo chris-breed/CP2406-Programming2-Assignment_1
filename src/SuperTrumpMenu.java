@@ -49,7 +49,7 @@ public class SuperTrumpMenu {
     }
 
     private static String showMenuMessage() {
-        return "Welcome to the Super Trump Mineral card game!\n Please select an option: \n \t1. Start\n \t2. Instructions\n \t3. Quit";
+        return "Welcome to the Super Trump Mineral card game!\nPlease select an option:\n\t1. Start\n\t2. Instructions\n\t3. Quit";
     }
 
     private static void sleepForTime(int time){
