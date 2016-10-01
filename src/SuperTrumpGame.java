@@ -1,5 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.math.*;
@@ -53,12 +51,18 @@ public class SuperTrumpGame {
                 //create an array for the players
                 ArrayList<ArrayList> playersArray = new ArrayList<ArrayList>(playerCount);
 
-                playersArray.add(new ArrayList<String>());
+                //creates an arraylist within the playersArrayList for the cards that the players have
+                //references a number
 
-                //user 0 is player, add how many players the user has specified
+                for (int i = 0; i <= playerCount; i++){
+                    playersArray.add(new ArrayList<Integer>());
+                }
+
 
                 //initialise cards into each of the users hands
-                //user has
+                //each player starts with 8 cards
+                //call BuildDeck() (gets 8 cards)
+                buildDeck();
 
                 //array for the players
                 //array for the cards - then reference the deck array
@@ -66,6 +70,25 @@ public class SuperTrumpGame {
         }
 
         return playerCount;
+    }
+
+    private static int[] buildDeck() {
+        int deck[] = new int[8];
+
+        //call getCards() method (gets a random card from the deck and removes it as a possible card
+        getCards();
+
+
+        return deck;
+    }
+
+    private static int getCards() {
+        int card;
+
+        card = 0;
+
+
+        return card;
     }
 
     private static int getPlayerCount() {

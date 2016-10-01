@@ -24,36 +24,6 @@ public class BuildDeck {
     private static String[] getCards(int i) {
         String[] cards = new String[13];
 
-        if (i == 0) {
-            cards[0] = "Slide01.jpg";
-            cards[1] = "Slide01";
-            cards[2] = "play";
-            cards[3] = "Quartz";
-            cards[4] = "SiO_2";
-            cards[5] = "tectosilicate";
-            cards[6] = "hexagonal";
-            cards[7] = "igneous, metamorphic, sedimentary";
-            cards[8] = "7";
-            cards[9] = "2.65";
-            cards[10] = "poor/none";
-            cards[11] = "high";
-            cards[12] = "moderate";
-        } else {
-            cards[0] = "Slide02.jpg";
-            cards[1] = "Slide02";
-            cards[2] = "play";
-            cards[3] = "Plagioclase";
-            cards[4] = "Na Al Si_3 O_8 - Ca Al_2 Si_2 O_8";
-            cards[5] = "tectosilicate";
-            cards[6] = "triclinic";
-            cards[7] = "igneous, metamorphic, sedimentary";
-            cards[8] = "6 - 6.5";
-            cards[9] = "2.6 - 2.8";
-            cards[10] = "1 perfect, 1 good";
-            cards[11] = "very high";
-            cards[12] = "moderate";
-        }
-
         return cards;
     }
 }
