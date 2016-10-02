@@ -44,7 +44,6 @@ public class SuperTrumpMenu {
             System.out.println(showMenuMessage());
         } else if (menuSelection == 3 || Integer.parseInt(menuInputString) == 3) {
             //TODO: exit program
-            BuildDeck.main(args);
         }
 
 
