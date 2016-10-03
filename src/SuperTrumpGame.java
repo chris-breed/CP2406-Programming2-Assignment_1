@@ -45,6 +45,54 @@ public class SuperTrumpGame {
 
     }
 
+    private static void initializeGame() {
+        checkPlayerCount();
+        selectDealer();
+        //deal out cards from the deck (from ParsePlist.class) 8 cards to each
+
+        dealCards(playerCount);
+        //clone deck and shuffle the clone
+        //deal out cards round robin from the end of the arrayList to each person
+        //remove cards that get dealt
+    }
+
+    private static int checkPlayerCount() {
+        playerCount = getPlayerCount();
+
+        while (playerCount < 3 && playerCount < 5) {
+
+            System.out.println("\n\n\n\n\n\nEnter a number of players between 3 and 5 (including the player)");
+            playerCount = getPlayerCount();
+        }
+        String playersArray[] = new String[playerCount];
+
+        return playerCount;
+    }
+
+    private static int getPlayerCount() {
+        int noPlayers;
+        Scanner menuSelection = new Scanner(System.in);
+        System.out.println("How many players are there? (Between 3 and 5)");
+        noPlayers = menuSelection.nextInt();
+
+        return noPlayers;
+    }
+
+    private static int selectDealer() {
+        return new Random().nextInt(playerCount);
+    }
+
+    private static void dealCards(int playerCount) {
+        //clone to the playing deck
+        for (int i = 0; i < ParsePList.deck.size(); i++) {
+            if (!ParsePList.deck.get(i).contains("rule")) {
+                playingDeck.add(i, ParsePList.deck.get(i));
+                System.out.println(playingDeck.get(i));
+            }
+        }
+//        System.out.println(playingDeck.get(2));
+    }
+
     public static void cardClass() {
         Card card1 = new Card(playingDeck.get(0).split("​"));
         Card card2 = new Card(playingDeck.get(1).split("​"));
@@ -100,54 +148,5 @@ public class SuperTrumpGame {
         Card card52 = new Card(playingDeck.get(51).split("​"));
         Card card53 = new Card(playingDeck.get(52).split("​"));
         Card card54 = new Card(playingDeck.get(53).split("​"));
-    }
-
-    private static void initializeGame() {
-        checkPlayerCount();
-        selectDealer();
-        //deal out cards from the deck (from ParsePlist.class) 8 cards to each
-
-        dealCards(playerCount);
-        //clone deck and shuffle the clone
-        //deal out cards round robin from the end of the arrayList to each person
-        //remove cards that get dealt
-    }
-
-    private static void dealCards(int playerCount) {
-        //clone to the playing deck
-        for (int i = 0; i < ParsePList.deck.size(); i++) {
-            if (!ParsePList.deck.get(i).contains("rule")) {
-                playingDeck.add(i, ParsePList.deck.get(i));
-            System.out.println(String.format(playingDeck.get(i).replace(".", ",")));
-            }
-        }
-
-
-    }
-
-    private static int selectDealer() {
-        return new Random().nextInt(playerCount);
-    }
-
-    private static int checkPlayerCount() {
-        playerCount = getPlayerCount();
-
-        while (playerCount < 3 && playerCount < 5) {
-
-            System.out.println("\n\n\n\n\n\nEnter a number of players between 3 and 5 (including the player)");
-            playerCount = getPlayerCount();
-        }
-        String playersArray[] = new String[playerCount];
-
-        return playerCount;
-    }
-
-    private static int getPlayerCount() {
-        int noPlayers;
-        Scanner menuSelection = new Scanner(System.in);
-        System.out.println("How many players are there? (Between 3 and 5)");
-        noPlayers = menuSelection.nextInt();
-
-        return noPlayers;
     }
 }
