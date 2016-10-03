@@ -1,3 +1,8 @@
+import jdk.internal.org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 
@@ -8,7 +13,7 @@ public class SuperTrumpMenu {
 
      */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SAXException, ParserConfigurationException, org.xml.sax.SAXException, ParseException, IOException {
         //show menu
         String menuInputString;
         int menuSelection = 0;

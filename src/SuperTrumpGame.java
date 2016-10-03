@@ -1,13 +1,19 @@
+import jdk.internal.org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.math.*;
 
 public class SuperTrumpGame {
 
-    public int playerCount;
+    public static int playerCount;
     public ArrayList<Integer> players = new ArrayList<Integer>(3);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SAXException, ParserConfigurationException, org.xml.sax.SAXException, ParseException, IOException {
 
         /*if start -
         ask user how many players there are (1 user player, between 3 and 4 bots)
@@ -16,79 +22,51 @@ public class SuperTrumpGame {
         randomly distribute the cards*/
         boolean running = false;
 
+        //initialised deck
+        try {
+            ParsePList.main(args);
+            System.out.println("debug - deck initialised");
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (org.xml.sax.SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
+
         initializeGame();
 
 
     }
 
-    private static void initializeGame(){
+    private static void initializeGame() {
         checkPlayerCount();
         selectDealer();
+        //deal out cards from the deck class
 
     }
 
     private static int selectDealer() {
-        int dealerPosition = 0;
-
-
-        return dealerPosition;
+        return new Random().nextInt(playerCount);
     }
 
 
     private static int checkPlayerCount() {
-        boolean playersCountBool = false;
-        int playerCount;
-
         playerCount = getPlayerCount();
 
-        while (!playersCountBool) {
-            if (!(playerCount <= 5 && playerCount >= 3)) {
-                System.out.println("\n\n\n\n\n\nEnter a number of players between 3 and 5 (including the player)");
-                playerCount = getPlayerCount();
-            } else {
-                playersCountBool = true;
+        while (playerCount < 3 && playerCount < 5) {
 
-                //create an array for the players
-                ArrayList<ArrayList> playersArray = new ArrayList<ArrayList>(playerCount);
-
-                //creates an arraylist within the playersArrayList for the cards that the players have
-                //references a number
-
-                for (int i = 0; i <= playerCount; i++){
-                    playersArray.add(new ArrayList<Integer>());
-                }
-
-
-                //initialise cards into each of the users hands
-                //each player starts with 8 cards
-                //call BuildDeck() (gets 8 cards)
-                buildDeck();
-
-                //array for the players
-                //array for the cards - then reference the deck array
-            }
+            System.out.println("\n\n\n\n\n\nEnter a number of players between 3 and 5 (including the player)");
+            playerCount = getPlayerCount();
         }
+        String playersArray[] = new String[playerCount];
 
         return playerCount;
-    }
-
-    private static int[] buildDeck() {
-        int deck[] = new int[8];
-
-        //call getCards() method (gets a random card from the deck and removes it as a possible card
-        getCards();
-
-
-        return deck;
-    }
-
-    private static int getCards() {
-        int card;
-
-        card = 0;
-
-
-        return card;
     }
 
     private static int getPlayerCount() {
