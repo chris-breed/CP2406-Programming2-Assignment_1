@@ -1,5 +1,6 @@
 class Card {
 
+    //fields
     String fileName;
     String imageName;
     String card_type;
@@ -14,23 +15,24 @@ class Card {
     String crustalAbundance;    //lowest to highest: ultratrace, trace, low, moderate, high, very high
     String economicValue;   //lowest to highest: trivial, low, moderate, high, very high, I'm rich!
 
+//    public Card(String fileName, String imageName, String cardType, String title, String chemistry, String classification,
+//                String crystalSystem, String occurrence, String hardness, String specificGravity, String cleavage,
+//                String crustalAbundance, String economicValue) {
 
-    public Card(String fileName, String imageName, String cardType, String title, String chemistry, String classification,
-                String crystalSystem, String occurrence, String hardness, String specificGravity, String cleavage,
-                String crustalAbundance, String economicValue) {
-        this.fileName = fileName;
-        this.imageName = imageName;
-        this.card_type = cardType;
-        this.title = title;
-        this.chemistry = chemistry;
-        this.classification = classification;
-        this.crystalSystem = crystalSystem;
-        this.occurrence = occurrence;
-        this.hardness = hardness;
-        this.specificGravity = specificGravity;
-        this.cleavage = cleavage;
-        this.crustalAbundance = crustalAbundance;
-        this.economicValue = economicValue;
+    //constructor
+    public Card(String[] cardValues){
+        this.fileName = cardValues[0];
+        this.imageName = cardValues[1];
+        this.card_type = cardValues[2];
+        this.title = cardValues[3];
+        this.chemistry = cardValues[4];
+        this.classification = cardValues[5];
+        this.crystalSystem = cardValues[6];
+        this.occurrence = cardValues[7];
+        this.hardness = cardValues[8];
+        this.specificGravity = cardValues[9];
+        this.cleavage = cardValues[10];
+        this.crustalAbundance = cardValues[11];
+        this.economicValue = cardValues[12];
     }
-
 }
