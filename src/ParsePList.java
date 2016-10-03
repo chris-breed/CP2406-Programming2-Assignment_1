@@ -7,6 +7,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ParsePList {
@@ -25,14 +26,19 @@ public class ParsePList {
     private static ArrayList<String> crustal_abund = new ArrayList<>();
     private static ArrayList<String> economic_value = new ArrayList<>();
 
+//    public static ArrayList<Object> deck = new ArrayList<>();
+
+
     public static void main(String[] args) throws SAXException, ParseException, IOException, org.xml.sax.SAXException, ParserConfigurationException {
+        String[][] deck = new String[50][12];
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse("MstCards_151021.plist");
 
             NodeList cardList = doc.getElementsByTagName("array");
-            System.out.println("there are " + cardList.getLength());
+//            System.out.println("there are " + cardList.getLength());
 
             for (int i = 0; i < cardList.getLength(); i++) {
                 Node p = cardList.item(i);
@@ -99,7 +105,7 @@ public class ParsePList {
                                             r = keys2.item(n + 2);
                                             crustal_abund.add(r.getTextContent());
                                             break;
-                                        case "economic":
+                                        case "economic_value":
                                             r = keys2.item(n + 2);
                                             economic_value.add(r.getTextContent());
                                             break;
@@ -119,28 +125,50 @@ public class ParsePList {
             e.printStackTrace();
         }
 
-        String[][] cards = new String[56][13];
+//        System.out.println(filename);
+//        System.out.println(imagename);
+//        System.out.println(card_type);
+//        System.out.println(title);
+//        System.out.println(chem);
+//        System.out.println(classification);
+//        System.out.println(crystal_system);
+//        System.out.println(occurrence);
+//        System.out.println(hardness);
+//        System.out.println(specificgravity);
+//        System.out.println(cleave);
+//        System.out.println(crustal_abund);
+//        System.out.println(economic_value);
 
-        for (int a = 0; a < filename.size(); a++) {
-            for (int b = 0; b < 13; b++) {
-                cards[a][b] = filename.get(b);
-                cards[a][b] = imagename.get(b);
-                cards[a][b] = card_type.get(b);
-                cards[a][b] = title.get(b);
-                cards[a][b] = chem.get(b);
-                cards[a][b] = classification.get(b);
-                cards[a][b] = crystal_system.get(b);
-                cards[a][b] = occurrence.get(b);
-                cards[a][b] = hardness.get(b);
-                cards[a][b] = specificgravity.get(b);
-                cards[a][b] = cleave.get(b);
-                cards[a][b] = crustal_abund.get(b);
-                cards[a][b] = economic_value.get(b);
-
-            }
+        for (int i = 0; i < 54; i++) {
+            deck[i][i] = constructedCard(i);
         }
+
+        System.out.println(String.valueOf(deck[4]));
+
+
+    }
+
+    private static String[] constructedCard(int i) {
+        String[] completeCard = new String[13];
+
+        completeCard[0] = filename.get(i);
+        completeCard[1] = imagename.get(i);
+        completeCard[2] = card_type.get(i);
+        completeCard[3] = title.get(i);
+        completeCard[4] = chem.get(i);
+        completeCard[5] = classification.get(i);
+        completeCard[6] = crystal_system.get(i);
+        completeCard[7] = occurrence.get(i);
+        completeCard[8] = hardness.get(i);
+        completeCard[9] = specificgravity.get(i);
+        completeCard[10] = cleave.get(i);
+        completeCard[11] = crustal_abund.get(i);
+        completeCard[12] = economic_value.get(i);
+
+        return completeCard;
     }
 }
+
 
 
 
