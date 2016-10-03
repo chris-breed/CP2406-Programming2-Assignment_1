@@ -2,7 +2,7 @@ class Card {
 
     String fileName;
     String imageName;
-    String cardType;
+    String card_type;
     String title;
     String chemistry;
     String classification;
@@ -20,7 +20,7 @@ class Card {
                 String crustalAbundance, String economicValue) {
         this.fileName = fileName;
         this.imageName = imageName;
-        this.cardType = cardType;
+        this.card_type = cardType;
         this.title = title;
         this.chemistry = chemistry;
         this.classification = classification;

@@ -32,12 +32,6 @@ public class BuildDeck {
 
     private static String[] buildCard(int i) {
 
-        Card cards1 = new Card("Slide01");
-        Card cards2 = new Card("Slide02");
-
-        System.out.println(cards1.printFileName());
-        System.out.println(cards2.printFileName());
-
         NSDictionary d = null;
         try {
             d = (NSDictionary) PropertyListParser.parse(fileInput);
