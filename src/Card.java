@@ -16,7 +16,7 @@ class Card {
     String economicValue;   //lowest to highest: trivial, low, moderate, high, very high, I'm rich!
 
     //constructor
-    public Card(String[] cardValues){
+    public Card(String[] cardValues) {
         this.fileName = cardValues[0];
         this.imageName = cardValues[1];
         this.card_type = cardValues[2];
@@ -31,4 +31,10 @@ class Card {
         this.crustalAbundance = cardValues[11];
         this.economicValue = cardValues[12];
     }
+
+    public String returnHardnessValue() {return hardness;}
+    public String returnSpecificGravity() {return specificGravity;}
+    public String returnCleavage() {return cleavage;}
+    public String returnCrustalAbund() {return crustalAbundance;}
+    public String returnEconomicValue() {return economicValue;}
 }
