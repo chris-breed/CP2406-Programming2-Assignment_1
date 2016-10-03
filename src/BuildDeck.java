@@ -1,4 +1,3 @@
-import com.dd.plist.*;
 import java.io.*;
 
 import java.io.File;
@@ -32,14 +31,6 @@ public class BuildDeck {
 
     private static String[] buildCard(int i) {
 
-        NSDictionary d = null;
-        try {
-            d = (NSDictionary) PropertyListParser.parse(fileInput);
-        } catch (Exception e) {
-            //ignore.
-        }
-
-        System.out.println(d);
         return null;
     }
 }

@@ -8,7 +8,7 @@ public class Deck {
 
     public void defineCards() {
 //        Card card1 = new Card("Slide01.jpg", "Slide01", "play", "Quartz", "SiO_2", "tectosilicate", "hexagonal",
-//                String[("igneous","metamorphic","sedimentary")], 7, 2.65f, "poor/none", "moderate");
+//                "igneous   metamorphic sedimentary", "7", "2.65f", "poor/none", "high", "moderate");
 //        Card card2 = new Card("Slide2");
 //        Card card3 = new Card("Slide3");
 //        Card card4 = new Card("Slide4");
