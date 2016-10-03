@@ -15,10 +15,6 @@ class Card {
     String crustalAbundance;    //lowest to highest: ultratrace, trace, low, moderate, high, very high
     String economicValue;   //lowest to highest: trivial, low, moderate, high, very high, I'm rich!
 
-//    public Card(String fileName, String imageName, String cardType, String title, String chemistry, String classification,
-//                String crystalSystem, String occurrence, String hardness, String specificGravity, String cleavage,
-//                String crustalAbundance, String economicValue) {
-
     //constructor
     public Card(String[] cardValues){
         this.fileName = cardValues[0];
