@@ -7,8 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class ParsePList {
 
@@ -25,12 +23,11 @@ public class ParsePList {
     private static ArrayList<String> cleave = new ArrayList<>();
     private static ArrayList<String> crustal_abund = new ArrayList<>();
     private static ArrayList<String> economic_value = new ArrayList<>();
+    private static ArrayList<String> subtitles = new ArrayList<>();
 
-//    public static ArrayList<Object> deck = new ArrayList<>();
-
+    public static ArrayList<ArrayList<String>> deck = new ArrayList<>();
 
     public static void main(String[] args) throws SAXException, ParseException, IOException, org.xml.sax.SAXException, ParserConfigurationException {
-        String[][] deck = new String[50][12];
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
@@ -38,7 +35,6 @@ public class ParsePList {
             Document doc = builder.parse("MstCards_151021.plist");
 
             NodeList cardList = doc.getElementsByTagName("array");
-//            System.out.println("there are " + cardList.getLength());
 
             for (int i = 0; i < cardList.getLength(); i++) {
                 Node p = cardList.item(i);
@@ -51,7 +47,6 @@ public class ParsePList {
                         if (q.getNodeType() == Node.ELEMENT_NODE) {
                             Element cardName = (Element) q;
                             NodeList keys2 = cardName.getChildNodes();
-//                            System.out.println(cardName.getTextContent());
 
                             for (int n = 0; n < keys2.getLength(); n++) {
                                 Node r = keys2.item(n);
@@ -109,19 +104,49 @@ public class ParsePList {
                                             r = keys2.item(n + 2);
                                             economic_value.add(r.getTextContent());
                                             break;
+                                        case "subtitle":
+                                            r = keys2.item(n + 2);
+                                            subtitles.add(r.getTextContent());
+                                            break;
                                     }
                                 }
                             }
                         }
                     }
                 }
-
             }
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (org.xml.sax.SAXException e) {
+            int subTitle = 0;
+            for (int i = 0; i < filename.size() - 1; i++) {
+                ArrayList<String> card = new ArrayList<String>();
+
+                card.add(filename.toArray()[i].toString());
+                card.add(imagename.toArray()[i].toString());
+                card.add(card_type.toArray()[i].toString());
+                if (card_type.toArray()[i].toString().equals("play")) {
+                    card.add(title.toArray()[i].toString());
+                    card.add(chem.toArray()[i].toString());
+                    card.add(classification.toArray()[i].toString());
+                    card.add(crystal_system.toArray()[i].toString());
+                    card.add(occurrence.toArray()[i].toString());
+                    card.add(hardness.toArray()[i].toString());
+                    card.add(specificgravity.toArray()[i].toString());
+                    card.add(cleave.toArray()[i].toString());
+                    card.add(crustal_abund.toArray()[i].toString());
+                    card.add(economic_value.toArray()[i].toString());
+                } else if ((card_type.toArray()[i].toString().equals("trump") | (card_type.toArray()[i].toString().equals("rule")))) {
+                    card.add(title.toArray()[i].toString());
+                    card.add(subtitles.toArray()[subTitle].toString());
+                    subTitle++;
+                } else {
+                    System.out.println("no card type");
+                }
+                System.out.println("Card: " + card);
+                deck.add(card);
+                }
+            Card card1 = new Card(deck.get(0));
+            System.out.println(card1.toString());
+        } catch (
+                ParserConfigurationException e) {
             e.printStackTrace();
         }
 
@@ -138,37 +163,6 @@ public class ParsePList {
 //        System.out.println(cleave);
 //        System.out.println(crustal_abund);
 //        System.out.println(economic_value);
-
-        for (int i = 0; i < 54; i++) {
-            deck[i][i] = constructedCard(i);
-        }
-
-        System.out.println(String.valueOf(deck[4]));
-
-
-    }
-
-    private static String[] constructedCard(int i) {
-        String[] completeCard = new String[13];
-
-        completeCard[0] = filename.get(i);
-        completeCard[1] = imagename.get(i);
-        completeCard[2] = card_type.get(i);
-        completeCard[3] = title.get(i);
-        completeCard[4] = chem.get(i);
-        completeCard[5] = classification.get(i);
-        completeCard[6] = crystal_system.get(i);
-        completeCard[7] = occurrence.get(i);
-        completeCard[8] = hardness.get(i);
-        completeCard[9] = specificgravity.get(i);
-        completeCard[10] = cleave.get(i);
-        completeCard[11] = crustal_abund.get(i);
-        completeCard[12] = economic_value.get(i);
-
-        return completeCard;
+//        System.out.println(deck.toString());
     }
 }
-
-
-
-
