@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class SuperTrumpGame {
 
     public static int playerCount;
-    public ArrayList<Integer> players = new ArrayList<Integer>(3);
-
     public static ArrayList<String> playingDeck = new ArrayList();
+    public static ArrayList<String> shuffledDeck = new ArrayList();
+    public ArrayList<Integer> players = new ArrayList<Integer>(3);
 
     public static void main(String[] args) throws SAXException, ParserConfigurationException, org.xml.sax.SAXException, ParseException, IOException {
 
@@ -38,11 +38,7 @@ public class SuperTrumpGame {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-
-
         initializeGame();
-
-
     }
 
     private static void initializeGame() {
@@ -87,10 +83,39 @@ public class SuperTrumpGame {
         for (int i = 0; i < ParsePList.deck.size(); i++) {
             if (!ParsePList.deck.get(i).contains("rule")) {
                 playingDeck.add(i, ParsePList.deck.get(i));
-                System.out.println(playingDeck.get(i));
+//                System.out.println(playingDeck.get(i));
             }
         }
-//        System.out.println(playingDeck.get(2));
+//        System.out.println(playingDeck.get(33));?
+        //shuffle the deck
+        shuffleDeck();
+    }
+
+    private static void shuffleDeck() {
+        System.out.println("h");
+        for (int i = 0; i < playingDeck.size(); i++) {
+//            if (checkShuffledDeck(shuffledDeck, playingDeck)) {
+            shuffledDeck.add(playingDeck.get(new Random().nextInt(playingDeck.size())));
+//            }
+
+            shuffledDeck.sort();
+            for (int o = 0; o < shuffledDeck.size(); o++) {
+                System.out.println(shuffledDeck.get(o));
+            }
+        }
+    }
+
+    private static boolean checkShuffledDeck(ArrayList<String> sd, ArrayList<String> pd) {
+        boolean bool = false;
+
+        System.out.println(sd);
+        System.out.println(pd);
+
+        if (!sd.contains(pd)) {
+            bool = true;
+        }
+
+        return bool;
     }
 
     public static void cardClass() {
