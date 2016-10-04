@@ -4,6 +4,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -94,28 +95,14 @@ public class SuperTrumpGame {
     private static void shuffleDeck() {
         System.out.println("h");
         for (int i = 0; i < playingDeck.size(); i++) {
-//            if (checkShuffledDeck(shuffledDeck, playingDeck)) {
-            shuffledDeck.add(playingDeck.get(new Random().nextInt(playingDeck.size())));
-//            }
-
-            shuffledDeck.sort();
-            for (int o = 0; o < shuffledDeck.size(); o++) {
-                System.out.println(shuffledDeck.get(o));
-            }
-        }
-    }
-
-    private static boolean checkShuffledDeck(ArrayList<String> sd, ArrayList<String> pd) {
-        boolean bool = false;
-
-        System.out.println(sd);
-        System.out.println(pd);
-
-        if (!sd.contains(pd)) {
-            bool = true;
+            shuffledDeck.add(playingDeck.get(i));
         }
 
-        return bool;
+        Collections.shuffle(shuffledDeck);
+        System.out.println(shuffledDeck.size());
+        for (int i = 0; i < shuffledDeck.size(); i++) {
+            System.out.println(shuffledDeck.get(i));
+        }
     }
 
     public static void cardClass() {
