@@ -15,6 +15,13 @@ public class SuperTrumpGame {
     public static ArrayList<String> shuffledDeck = new ArrayList();
     public ArrayList<Integer> players = new ArrayList<Integer>(3);
 
+    //ArrayLists for players hands
+    public static ArrayList<String> playerHand = new ArrayList<>();
+    public static ArrayList<String> botHand = new ArrayList<>();
+    public static ArrayList<String> botHand2 = new ArrayList<>();
+    public static ArrayList<String> botHand3 = new ArrayList<>();
+    public static ArrayList<String> botHand4 = new ArrayList<>();
+
     public static void main(String[] args) throws SAXException, ParserConfigurationException, org.xml.sax.SAXException, ParseException, IOException {
 
         /*if start -
@@ -90,6 +97,7 @@ public class SuperTrumpGame {
 //        System.out.println(playingDeck.get(33));?
         //shuffle the deck
         shuffleDeck();
+        dealCardsToPlayers();
     }
 
     private static void shuffleDeck() {
@@ -102,6 +110,31 @@ public class SuperTrumpGame {
         System.out.println(shuffledDeck.size());
         for (int i = 0; i < shuffledDeck.size(); i++) {
             System.out.println(shuffledDeck.get(i));
+        }
+    }
+
+    private static void dealCardsToPlayers() {
+        if (playerCount == 3) {
+
+            Players player = new Players();
+            Players player2 = new Players();
+            Players player3 = new Players();
+
+            System.out.println(player);
+            System.out.println(player2);
+            System.out.println(player3);
+
+            for (int i = 0; i < playerCount; i++) {
+
+            }
+
+            if (playerCount == 4) {
+            }
+
+            if (playerCount == 5) {
+
+            }
+
         }
     }
 

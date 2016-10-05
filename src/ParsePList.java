@@ -140,12 +140,12 @@ public class ParsePList {
                 } else {
                     System.out.println("no card type");
                 }
-//                System.out.println("Card: " + card);
+                System.out.println("Card: " + card);
                 deck.add(card.toString().replaceAll(",", "\u200B"));
             }
-//            System.out.println("Finished parsing plist file\n=================================");
+            System.out.println("Finished parsing plist file\n=================================");
 
-//            System.out.println(deck.get(21));
+            System.out.println(deck.get(21));
             Card card1 = new Card(deck.get(0).split("​"));
             Card card2 = new Card(deck.get(1).split("​"));
             Card card3 = new Card(deck.get(2).split("​"));
@@ -201,10 +201,10 @@ public class ParsePList {
             Card card53 = new Card(deck.get(52).split("​"));
             Card card54 = new Card(deck.get(53).split("​"));
 
-//            System.out.println(card22.title);
-//            System.out.println(card22.cleavage);
-//            System.out.println((card22.chemistry).replace(".", ","));
-//            System.out.println(card22.imageName);
+            System.out.println(card22.title);
+            System.out.println(card22.cleavage);
+            System.out.println((card22.chemistry).replace(".", ","));
+            System.out.println(card22.imageName);
 
         } catch (
                 ParserConfigurationException e) {
