@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class ParsePList {
 
+    public static ArrayList<String> deck = new ArrayList<>();
     private static ArrayList<String> filename = new ArrayList<>();
     private static ArrayList<String> imagename = new ArrayList<>();
     private static ArrayList<String> card_type = new ArrayList<>();
@@ -24,8 +25,6 @@ public class ParsePList {
     private static ArrayList<String> crustal_abund = new ArrayList<>();
     private static ArrayList<String> economic_value = new ArrayList<>();
     private static ArrayList<String> subtitles = new ArrayList<>();
-
-    public static ArrayList<String> deck = new ArrayList();
 
     public static void main(String[] args) throws SAXException, ParseException, IOException, org.xml.sax.SAXException, ParserConfigurationException {
 
@@ -117,7 +116,7 @@ public class ParsePList {
             }
             int subTitle = 0;
             for (int i = 0; i < filename.size() - 1; i++) {
-                ArrayList card = new ArrayList();
+                ArrayList<String> card = new ArrayList<String>();
 
                 card.add(filename.toArray()[i].toString());
                 card.add(imagename.toArray()[i].toString());
@@ -201,13 +200,7 @@ public class ParsePList {
             Card card53 = new Card(deck.get(52).split("​"));
             Card card54 = new Card(deck.get(53).split("​"));
 
-//            System.out.println(card22.title);
-//            System.out.println(card22.cleavage);
-//            System.out.println((card22.chemistry).replace(".", ","));
-//            System.out.println(card22.imageName);
-
-        } catch (
-                ParserConfigurationException e) {
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
     }

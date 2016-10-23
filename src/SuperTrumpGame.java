@@ -13,14 +13,13 @@ public class SuperTrumpGame {
     public static int playerCount;
     public static ArrayList<String> playingDeck = new ArrayList();
     public static ArrayList<String> shuffledDeck = new ArrayList();
-    public ArrayList<Integer> players = new ArrayList<Integer>(3);
-
     //ArrayLists for players hands
     public static ArrayList<String> playerHand = new ArrayList<>();
     public static ArrayList<String> botHand = new ArrayList<>();
     public static ArrayList<String> botHand2 = new ArrayList<>();
     public static ArrayList<String> botHand3 = new ArrayList<>();
     public static ArrayList<String> botHand4 = new ArrayList<>();
+    public ArrayList<Integer> players = new ArrayList<Integer>(3);
 
     public static void main(String[] args) throws SAXException, ParserConfigurationException, org.xml.sax.SAXException, ParseException, IOException {
 
@@ -96,29 +95,24 @@ public class SuperTrumpGame {
         }
 //        System.out.println(playingDeck.get(33));?
         //shuffle the deck
-        shuffleDeck();
+        cloneAndShuffleDeck();
         dealCardsToPlayers();
     }
 
-    private static void shuffleDeck() {
-        System.out.println("h");
+    private static void cloneAndShuffleDeck() {
         for (int i = 0; i < playingDeck.size(); i++) {
             shuffledDeck.add(playingDeck.get(i));
         }
 
         Collections.shuffle(shuffledDeck);
-        System.out.println(shuffledDeck.size());
-        for (int i = 0; i < shuffledDeck.size(); i++) {
-            System.out.println(shuffledDeck.get(i));
-        }
     }
 
     private static void dealCardsToPlayers() {
         if (playerCount == 3) {
 
-            Players player = new Players();
-            Players player2 = new Players();
-            Players player3 = new Players();
+            Players player = new Players("1");
+            Players player2 = new Players("2");
+            Players player3 = new Players("3");
 
             System.out.println(player);
             System.out.println(player2);
@@ -127,16 +121,17 @@ public class SuperTrumpGame {
             for (int i = 0; i < playerCount; i++) {
 
             }
+        }
 
-            if (playerCount == 4) {
-            }
+        if (playerCount == 4) {
+        }
 
-            if (playerCount == 5) {
-
-            }
+        if (playerCount == 5) {
 
         }
+
     }
+
 
     public static void cardClass() {
         Card card1 = new Card(playingDeck.get(0).split("​"));
