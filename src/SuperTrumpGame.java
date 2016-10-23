@@ -1,18 +1,19 @@
 import jdk.internal.org.xml.sax.SAXException;
 
+import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
+import java.awt.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.Scanner;
 
-public class SuperTrumpGame {
+class SuperTrumpGame extends JFrame {
 
-    public static int playerCount;
-    public static ArrayList<String> playingDeck = new ArrayList();
-    public static ArrayList<String> shuffledDeck = new ArrayList();
+    private static int playerCount;
+    private static ArrayList<String> playingDeck = new ArrayList<String>();
+    private static ArrayList<String> shuffledDeck = new ArrayList<>();
     //ArrayLists for players hands
     public static ArrayList<String> playerHand = new ArrayList<>();
     public static ArrayList<String> botHand = new ArrayList<>();
@@ -21,35 +22,46 @@ public class SuperTrumpGame {
     public static ArrayList<String> botHand4 = new ArrayList<>();
     public ArrayList<Integer> players = new ArrayList<Integer>(3);
 
-    public static void main(String[] args) throws SAXException, ParserConfigurationException, org.xml.sax.SAXException, ParseException, IOException {
+    private SuperTrumpGame() {
+        super("SuperTrump - Game");
+        setSize(1280, 720);
+        setResizable(false);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
 
+        JPanel game = new JPanel();
+
+        JLabel numberPlayers = new JLabel(playerCount + " players");
+
+        game.add(numberPlayers);
+        add(game);
+
+    }
+
+    static void main(int pcount) throws SAXException, ParserConfigurationException, org.xml.sax.SAXException, ParseException, IOException {
         /*if start -
         ask user how many players there are (1 user player, between 3 and 4 bots)
         start game
         randomly select dealer
         randomly distribute the cards*/
         boolean running = false;
+        playerCount = pcount;
 
         //initialised deck
         try {
+//            String[] args = new String[2];
+            String[] args = new String[2];
             ParsePList.main(args);
             System.out.println("debug - deck initialised");
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (org.xml.sax.SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
+        } catch (SAXException | ParseException | org.xml.sax.SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
         }
         initializeGame();
+        new SuperTrumpGame().setVisible(true);
     }
 
     private static void initializeGame() {
-        checkPlayerCount();
+//        checkPlayerCount();
         selectDealer();
         //deal out cards from the deck (from ParsePlist.class) 8 cards to each
 
@@ -59,27 +71,27 @@ public class SuperTrumpGame {
         //remove cards that get dealt
     }
 
-    private static int checkPlayerCount() {
-        playerCount = getPlayerCount();
+//    private static int checkPlayerCount() {
+//        playerCount = getPlayerCount();
+//
+//        while (playerCount < 3 && playerCount < 5) {
+//
+//            System.out.println("\n\n\n\n\n\nEnter a number of players between 3 and 5 (including the player)");
+//            playerCount = getPlayerCount();
+//        }
+//        String playersArray[] = new String[playerCount];
+//
+//        return playerCount;
+//    }
 
-        while (playerCount < 3 && playerCount < 5) {
-
-            System.out.println("\n\n\n\n\n\nEnter a number of players between 3 and 5 (including the player)");
-            playerCount = getPlayerCount();
-        }
-        String playersArray[] = new String[playerCount];
-
-        return playerCount;
-    }
-
-    private static int getPlayerCount() {
-        int noPlayers;
-        Scanner menuSelection = new Scanner(System.in);
-        System.out.println("How many players are there? (Between 3 and 5)");
-        noPlayers = menuSelection.nextInt();
-
-        return noPlayers;
-    }
+//    private static int getPlayerCount() {
+//        int noPlayers;
+//        Scanner menuSelection = new Scanner(System.in);
+//        System.out.println("How many players are there? (Between 3 and 5)");
+//        noPlayers = menuSelection.nextInt();
+//
+//        return noPlayers;
+//    }
 
     private static int selectDealer() {
         return new Random().nextInt(playerCount);
@@ -100,8 +112,8 @@ public class SuperTrumpGame {
     }
 
     private static void cloneAndShuffleDeck() {
-        for (int i = 0; i < playingDeck.size(); i++) {
-            shuffledDeck.add(playingDeck.get(i));
+        for (String aPlayingDeck : playingDeck) {
+            shuffledDeck.add(aPlayingDeck);
         }
 
         Collections.shuffle(shuffledDeck);

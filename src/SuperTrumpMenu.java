@@ -1,13 +1,12 @@
 import jdk.internal.org.xml.sax.SAXException;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Scanner;
-
 
 public class SuperTrumpMenu extends JFrame {
     /*
@@ -17,23 +16,27 @@ public class SuperTrumpMenu extends JFrame {
      */
 
     private SuperTrumpMenu() {
-        super("SuperTrump");
+        //menu frame
+        super("SuperTrump - Menu");
         setSize(500, 250);
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLayout((new FlowLayout()));
+        setLayout(new FlowLayout());
 
-
+        //menu panels
         JPanel startOptions = new JPanel(new GridBagLayout());
 
-        SpinnerNumberModel noPlayersLimit = new SpinnerNumberModel(3.0, 3.0, 5.0, 1.0);
-        JSpinner noPlayers = new JSpinner(noPlayersLimit);
+        //spinner for selecting how many players with limiter and default value
+        SpinnerNumberModel noPlayersSpinner = new SpinnerNumberModel(3, 3, 5, 1);
+        JSpinner noPlayers = new JSpinner(noPlayersSpinner);
 
+        //buttons for the main menu
         JButton startGameButton = new JButton("Start Game");
-        JButton instructionsButton = new JButton("Instructions");
 
+        //labels for the menu
         JLabel enterPlayers = new JLabel("How many players?");
-        JLabel instructionsLabel = new JLabel("Read the instructions!");
+        JLabel instructionsLabel1 = new JLabel("Instructions:");
+        JLabel instructionsLabel2 = new JLabel("Select a card that trumps the previously played card");
 
         GridBagConstraints c = new GridBagConstraints();
 
@@ -46,13 +49,26 @@ public class SuperTrumpMenu extends JFrame {
         c.gridy = 2;
         startOptions.add(startGameButton, c);
 
+        //event for start button click
+        startGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println((Integer) noPlayersSpinner.getValue());
+                try {
+                    SuperTrumpGame.main((Integer) noPlayersSpinner.getValue());
+                    setVisible(false);
+                } catch (SAXException | ParserConfigurationException | org.xml.sax.SAXException | IOException | ParseException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
         c.gridx = 1;
         c.gridy = 0;
         c.anchor = GridBagConstraints.NORTHEAST;
-        startOptions.add(instructionsLabel, c);
+        startOptions.add(instructionsLabel1, c);
         c.gridy = 1;
-        startOptions.add(instructionsButton, c);
+        startOptions.add(instructionsLabel2, c);
         add(startOptions);
 
     }
@@ -62,54 +78,4 @@ public class SuperTrumpMenu extends JFrame {
         new SuperTrumpMenu().setVisible(true);
 
     }
-//        String menuInputString;
-//        int menuSelection = 0;
-//        String writtenInstructions = "Put some instructions here";
-//
-//        Scanner menuScanner = new Scanner(System.in);
-//
-//        System.out.println(showMenuMessage());
-//        menuInputString = menuScanner.nextLine();
-//
-////        System.out.println(menuInputString);
-//
-//        switch (menuInputString.toLowerCase()) {
-//            case "start":
-//                menuSelection = 1;
-//                break;
-//            case "instructions":
-//                menuSelection = 2;
-//                break;
-//            case "quit":
-//                menuSelection = 3;
-//                break;
-//        }
-//
-//
-//        if (menuSelection == 1 || Integer.parseInt(menuInputString) == 1) {
-//            SuperTrumpGame.main(args);
-//        } else if (menuSelection == 2 || Integer.parseInt(menuInputString) == 2) {
-//            System.out.println("\n\n\n\n\n\n\n");
-//            System.out.println(writtenInstructions);
-//            sleepForTime(1500);
-//            System.out.println("\n\n\n\n\n\n\n");
-//            System.out.println(showMenuMessage());
-//        } else if (menuSelection == 3 || Integer.parseInt(menuInputString) == 3) {
-//            //TODO: exit program
-//        }
-//
-//
-//    }
-//
-//    private static String showMenuMessage() {
-//        return "Welcome to the Super Trump Mineral card game!\nPlease select an option:\n\t1. Start\n\t2. Instructions\n\t3. Quit";
-//    }
-//
-//    private static void sleepForTime(int time) {
-//        try {
-//            Thread.sleep(time);
-//        } catch (InterruptedException e) {
-//            System.out.println("got interrupted!");
-//        }
-
-    }
+}
